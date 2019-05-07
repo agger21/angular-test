@@ -1,0 +1,38 @@
+<!-- <canvas #canvas></canvas> -->
+<div nz-row
+     nzType="flex"
+     nzJustify="center"
+     nzAlign="middle"
+     class="login">
+<form nz-form class="login-form" #form="ngForm">
+  <h1>YIPAGE 后台管理系统</h1>
+  <nz-form-item>
+    <nz-form-control [nzValidateStatus]="Name.control">
+      <nz-input-group [nzPrefix]="prefixUser">
+        <input type="text" nz-input required [(ngModel)]="userInfo.username" #Name="ngModel" placeholder="用户名" name="username"/>
+        <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
+      </nz-input-group>
+      <nz-form-explain *ngIf="Name.dirty&&Name.invalid">请输入用户名!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzValidateStatus]="Pwd.control">
+      <nz-input-group [nzPrefix]="prefixLock">
+        <input type="password" nz-input required [(ngModel)]="userInfo.password" #Pwd="ngModel" placeholder="密码" name="password"/>
+        <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
+      </nz-input-group>
+      <nz-form-explain *ngIf="Pwd.dirty&&Pwd.invalid">请输入密码!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control>
+      <label nz-checkbox>
+        <span>记住我</span>
+      </label>
+      <!-- <a class="login-form-forgot" class="login-form-forgot">忘记密码</a> -->
+      <button nz-button class="login-form-button" nzType="primary" nzSize="large" (click)="login()" [disabled]="form.invalid" [nzLoading]="loading">Login</button>
+      <!-- <a href="">立即注册!</a> -->
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</div>

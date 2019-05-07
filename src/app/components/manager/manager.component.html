@@ -1,0 +1,81 @@
+<div class="topBtn">
+  <button (click)="showAdd()" nz-button nzType="primary" [nzSize]="size"><i nz-icon type="plus"></i>添加管理员</button>
+  <div class="rightSearch">
+    <nz-input-group [nzSuffix]="suffixTemplate" >
+      <input type="text" nz-input placeholder="请输入搜索内容" />
+    </nz-input-group>
+    <ng-template #suffixTemplate>
+      <i nz-icon type="search"></i>
+    </ng-template>
+  </div>
+</div>
+
+<br>
+
+
+<nz-table  #basicTable [nzData]="listOfData">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data" >
+    <td [nzAlign]="center">{{ data.name }}</td>
+    <td>{{ data.age }}</td>
+    <td>{{ data.address }}</td>
+    <td>
+      <!--<a>Action 一 {{ data.name }}</a>-->
+      <button nz-button [nzSize]="size" nzType="primary" (click)="toUrl()" >编辑</button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button [nzSize]="size" nzType="danger">删除</button>
+      <!--<a>Delete</a>-->
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+
+<nz-modal [(nzVisible)]="addOption" [nzTitle]="boxTitle" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form >
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >选择角色名称</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+      <nz-select  [(ngModel)]="roleValue" nzAllowClear nzPlaceHolder="请选择" #model name="nzLabel">
+        <nz-option  [nzValue]="item" [nzLabel]="item" *ngFor="let item of roleList"></nz-option>
+      </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >用户名</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <input name="username" type="text" [(ngModel)]="username"  nz-input placeholder="请输入用户名" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >邮箱</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <input name="mail" type="email" [(ngModel)]="mailValue"  nz-input placeholder="请输入邮箱" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >密码</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <input name="pwd" type="number" [(ngModel)]="pwdValue"  nz-input placeholder="请输入密码" />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="5" >状态</nz-form-label>
+      <nz-form-control [nzSpan]="8">
+        <nz-select  [(ngModel)]="stateValue" nzAllowClear nzPlaceHolder="请选择" #model name="nzLabel2">
+          <nz-option  nzValue="0" nzLabel="关闭" ></nz-option>
+          <nz-option  nzValue="1" nzLabel="开启" ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>
+
